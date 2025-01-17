@@ -51,21 +51,24 @@ public:
 
 
 //iterative solution
-// class Solution {
-// public:
-// Node* connect(Node *root) {
-//     if (root == NULL) return;
-//     TreeLinkNode *pre = root;
-//     TreeLinkNode *cur = NULL;
-//     while(pre->left) {
-//         cur = pre;
-//         while(cur) {
-//             cur->left->next = cur->right;
-//             if(cur->next) cur->right->next = cur->next->left;
-//             cur = cur->next;
-//         }
-//         pre = pre->left;
-//     }
-//     return root;
-// }
-// };
+
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if(root==NULL){
+            return NULL;
+        }
+        Node *curr=root;
+        while(curr->left!=NULL){
+            Node * temp=curr;
+            while(curr!=NULL){
+                curr->left->next=curr->right;
+                curr->right->next=(curr->next==NULL)?NULL:curr->next->left;
+                curr=curr->next;
+            }
+            curr=temp->left;
+        }
+        return root;
+    }
+};
