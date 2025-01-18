@@ -32,17 +32,21 @@ public:
     }
 };
 
+// BINARY SEARCH TECHNIQUE IN THIS
 
-
-
-//tried logically but failed
-// class Solution {
-// public:
-//     int lengthOfLIS(vector<int>& nums) {
-//       int cnt=0;
-//       for(int i=0;i<nums.size()-1;i++){
-//         if(nums[i]>=nums[i+1])cnt++;
-//       }
-//       return nums.size()-cnt;
-//     }
-// };
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        vector<int> v; 
+        v.push_back(nums[0]);
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] > v.back()) {
+                v.push_back(nums[i]);
+            } else {
+                int ind = lower_bound(v.begin(), v.end(), nums[i]) - v.begin();
+                v[ind] = nums[i];
+            }
+        }
+        return v.size();
+    }
+};
