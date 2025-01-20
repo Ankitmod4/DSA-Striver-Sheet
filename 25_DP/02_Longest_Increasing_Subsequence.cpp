@@ -43,7 +43,7 @@ public:
             if (nums[i] > v.back()) {
                 v.push_back(nums[i]);
             } else {
-                int ind = lower_bound(v.begin(), v.end(), nums[i]) - v.begin();
+                int ind = lower_bound(v.begin(), v.end(), nums[i]) - v.begin();  // this line find the index where nums[i] can be insert makiing the vector in sorted order
                 v[ind] = nums[i];
             }
         }
