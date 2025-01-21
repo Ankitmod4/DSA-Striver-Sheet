@@ -55,30 +55,43 @@ public:
 
 
 
-// //Recursion TLE
-// class Solution {
-// public:
+//  MEMOIZATION
 
-//     int coin(int sum,int amount,vector<int>coins){
-//         if(sum>amount){
-//             return INT_MAX;
-//         }
-//         if(sum==amount){
-//             return 1;
-//         }
-
-//         int mini=INT_MAX;
-//         for(int i=0;i<coins.size();i++){
-//             int res=coin(sum+coins[i],amount,coins);
-//             if(res!=INT_MAX){
-//                 mini=min(mini,res+1);
-//             }
-//         }
-//         return mini;
-//     }
-//     int coinChange(vector<int>& coins, int amount) {
-//         int res=coin(0,amount,coins);
-//         if(res==INT_MAX)return -1;
-//         return res-1;
-//     }
-// };
+class Solution {
+public:
+int SolveUsingRecurssion(vector<int>& coins, int amount,vector<int>&dp){
+    if(amount==0){
+        return 0;
+    }
+    if(amount<0){
+        return INT_MAX;
+    }
+    if(dp[amount]!=-1){
+        return dp[amount];
+    }
+    int mini=INT_MAX;
+    for(int i=0;i<coins.size();i++){
+       
+         int RecurssionKaans=SolveUsingRecurssion(coins,amount-coins[i],dp);
+         if(RecurssionKaans!=INT_MAX){
+            int ans=1+RecurssionKaans;
+         mini=min(mini,ans);    
+         }
+         
+        
+    }
+    dp[amount]=mini;
+    return dp[amount];
+}
+    int coinChange(vector<int>& coins, int amount) {
+        int n=amount;
+        vector<int>dp(n+1,-1);
+        int ans=SolveUsingRecurssion(coins,amount,dp);
+        if(ans==INT_MAX){
+            return -1 ;
+        }
+        else{
+            return ans;
+        }
+    }
+};
