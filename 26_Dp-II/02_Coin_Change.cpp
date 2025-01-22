@@ -42,27 +42,30 @@ public:
 
     
 //Memoization
-// class Solution {
-// public:
+class Solution {
+public:
+    int Solve(int i,vector<int>&coins,int amount,vector<vector<int>>&dp){
+        if(amount==0){
+            return 1;
+        }
+        if(i==coins.size()){
+            return 0;
+        }
+        if(dp[i][amount]!=-1){
+            return dp[i][amount];
+        }
+        if(amount<coins[i]){
+           return  Solve(i+1,coins,amount,dp);
+        }
+        int take=Solve(i,coins,amount-coins[i],dp);
+        int skip=Solve(i+1,coins,amount,dp);
+        dp[i][amount]= take +skip;
+        return take +skip;
+    }
+    int change(int amount, vector<int>& coins) {
+        int i=0;
+        vector<vector<int>>dp(coins.size()+1,vector<int>(amount+1,-1));
+       return  Solve(i,coins,amount,dp);
 
-
-//     int coin(int ind,int amount,vector<int>coins,vector<vector<int>>&dp){
-//         if(ind==0){
-//             return (amount%coins[0]==0);
-//         }
-//         if(dp[ind][amount]!=-1)return dp[ind][amount];
-
-//         int notake=coin(ind-1,amount,coins,dp);
-//         int take=0;
-//         if(amount>=coins[ind]){
-//             take=coin(ind,amount-coins[ind],coins,dp);
-//         }
-
-//         return dp[ind][amount]=take+notake ;
-//     }
-
-//     int change(int amount, vector<int>& coins) {
-//         vector<vector<int>>dp(coins.size(),vector<int>(amount+1,-1));
-//         return coin(coins.size()-1,amount,coins,dp);
-//     }
-// };
+    }
+};
