@@ -34,17 +34,18 @@ int countDistinctSubstring(string s)
 
 
 //TLE
-// int countDistinctSubstring(string s)
-// {
-//     set<string>ss;
-//     int n=s.length();
-//     for(int i=0;i<n;i++){
-//         string str="";
-//         for(int j=i;j<n;j++){
-//             str+=s[j];
-//             ss.insert(str);
-//         }
-//     }
-//     return ss.size()+1;
-// }
+class Solution {
+public:
+    int findMaximumXOR(vector<int>& nums) {
+        
+        int res=0;
+       for(int i=0;i<nums.size()-1;i++){
+        for(int j=i+1;j<nums.size();j++){
+      
+          res=max(res,nums[i]^nums[j]);
+        }
+       } 
+       return res;
+    }
+};
 
