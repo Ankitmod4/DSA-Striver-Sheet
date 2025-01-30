@@ -48,3 +48,33 @@ public:
         return ans;
     }
 };
+
+
+// MY APPROACH
+
+class Solution {
+public:
+bool isPallindrome(string &s,int i,int j){
+    while(i<=j){
+        if(s[i]!=s[j]) return false;
+       i++;
+       j--;
+    }
+      return true;
+}
+    string longestPalindrome(string s) {
+        int n = s.size();
+        if (n == 0) return "";
+        string res = "";
+          for(int i=0;i<s.length();i++){   
+            for(int j=i;j<s.length();j++){
+             if(isPallindrome(s,i,j)){  
+                    if (j - i + 1 > res.size()) {
+                        res = s.substr(i, j - i + 1);  
+                    }
+            }
+          }
+          }
+          return res;
+    }
+};              
