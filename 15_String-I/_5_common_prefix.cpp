@@ -25,24 +25,24 @@ public:
 };
 
 
-//other appproach
+//MY APPROACH
 
-// class Solution {
-// public:
-//     string longestCommonPrefix(vector<string>& strs)
-//     {
-//         string ans;
-//         for(int i=0;i<strs[0].size();i++)
-//         {
-//             for(int j=1;j<strs.size();j++)
-//             {
-//                 if(strs[0][i] != strs[j][i])
-//                 {
-//                     return ans;
-//                 }
-//             }
-//             ans += strs[0][i];
-//         }
-//         return ans;
-//     }
-// };
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        string ans="";
+        sort(strs.begin(),strs.end());
+        string str1=strs[0];
+        string str2=strs[strs.size()-1];
+        for(int i=0;i<str1.length();i++){
+            if(str1[i]==str2[i]){
+              ans=ans+str1[i];
+            }
+            else{
+                break;
+            }
+        }
+        return ans;
+    }
+};
+
