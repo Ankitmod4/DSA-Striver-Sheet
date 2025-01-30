@@ -63,3 +63,32 @@ public:
 //         return ans;
 //     }
 // };
+
+
+// MY APPROACH 
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        vector<string> ans;
+        int l = 0;
+        
+        for (int i = 0; i <= s.length(); i++) {
+            if (i == s.length() || s[i] == ' ') { 
+                if (i > l) {  
+                    ans.push_back(s.substr(l, i - l));
+                }
+                l = i + 1;
+            }
+        }
+        reverse(ans.begin(), ans.end());
+        string res;
+        for (int i = 0; i < ans.size(); i++) {
+            res += ans[i];
+            if (i < ans.size() - 1) {
+                res += " ";
+            }
+        }
+        return res;
+    }
+};
