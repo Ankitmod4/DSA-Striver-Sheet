@@ -54,39 +54,17 @@ using namespace std;
 // };
 
 
-//Using Z_function:
-class solution{
-    public:
-    vector <int> search(string pat, string txt)
-        {
-            
-            int m=txt.length();
-            int n=pat.length();
-            
-            string ns=pat+"#"+txt;
-            vector<int>z;
-            for(int i=0;i<ns.length();i++){
-                if(i<=n){
-                    z.push_back(0);
-                }
-                else{
-                    int left=0;
-                    int right=i;
-                    while(right<ns.length() && ns[left]==ns[right]){
-                        left++;
-                        right++;
-                    }
-                    z.push_back(left);
-                }
-            }
-            
-            vector<int>result;
-            for(int i=0;i<ns.length();i++){
-                if(z[i]==n){
-                    result.push_back(i-n);
-                }
-            }
-            
-            return result;
+//Using STL 
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        
+        int pos=haystack.find(needle);
+        if (pos == std::string::npos) {
+            return -1;
+        } else {
+            return pos;
         }
+    }
 };
