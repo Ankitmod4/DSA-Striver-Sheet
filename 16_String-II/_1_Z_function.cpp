@@ -61,10 +61,10 @@ public:
     int strStr(string haystack, string needle) {
         
         int pos=haystack.find(needle);
-        if (pos >haystack.length()) {
-            return -1;
-        } else {
+        if (pos <haystack.length()) {
             return pos;
+        } else {
+            return -1;
         }
     }
 };
